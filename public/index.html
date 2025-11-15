@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swarupper</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script src="https://unpkg.com/@barba/core"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="home">
+      <div
+        id="ui-container"
+        class="min-h-screen p-4 md:p-8 transition-colors duration-1000"
+      >
+        <header
+          class="text-center mb-8 border-4 border-black p-4 bg-black bg-opacity-30"
+        >
+          <h1 class="text-3xl md:text-5xl text-white" id="title-anim" >
+            SWARUPPER
+          </h1>
+          <div
+            class="mt-4 p-2 bg-gray-900 inline-block text-lg md:text-2xl"
+          >
+            <span id="rank-display" class="text-yellow-300">Loading...</span>
+            <span class="text-white">|</span>
+            <span id="points-display" class="text-green-400">Loading...</span>
+            <span class="text-white">PTS</span>
+          </div>
+        </header>
+
+        <div class="max-w-xl mx-auto mb-8">
+          <form id="add-task-form" class="flex flex-col gap-4">
+            <input
+              id="task-input"
+              type="text"
+              placeholder="ENTER NEW TASK..."
+              class="pixel-font p-4 text-lg border-4 border-black text-white bg-gray-800 focus:outline-none focus:bg-white focus:text-black"
+              required
+            />
+            <div class="flex items-center justify-center gap-4">
+              <input
+                id="repeat-checkbox"
+                type="checkbox"
+                class="w-6 h-6 pixel-checkbox"
+              />
+              <label for="repeat-checkbox" class="text-white text-lg"
+                >REPEAT? (+5 BONUS)</label
+              >
+            </div>
+            <button
+              type="submit"
+              class="pixel-font p-4 text-xl text-black bg-yellow-400 border-4 border-black hover:bg-yellow-300 active:translate-y-1"
+            >
+              ADD MISERY
+            </button>
+            <button
+            type="button"
+            id="reset-button"
+            class="pixel-font p-3 mt-4 text-sm text-white bg-red-600 border-4 border-black hover:bg-red-500 active:translate-y-1"
+          >
+            RESPAWN TO BE CURSED YET AGAIN
+          </button>
+          </form>
+        </div>
+
+        <div class="max-w-xl mx-auto">
+          <h2 class="text-2xl text-white text-center mb-4">TASKS</h2>
+          <ul id="task-list" class="flex flex-col gap-4">
+            </ul>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

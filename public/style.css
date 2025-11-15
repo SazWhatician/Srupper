@@ -1,0 +1,67 @@
+
+
+
+body,
+input,
+button,
+label,
+h1,
+h2,
+span {
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 2px 2px #000; /* 8-bit shadow */
+}
+
+
+#ui-container {
+  background-color: #3b82f6; /* Default: Blue (Novice) */
+}
+
+
+
+#ui-container[data-rank-color='blue'] {
+  background-color: #3b82f6; /* 0-15: Blue */
+}
+#ui-container[data-rank-color='violet'] {
+  background-color: #9000ff; 
+}
+#ui-container[data-rank-color='brown'] {
+  background-color: #b32828; 
+}
+#ui-container[data-rank-color='red'] {
+  background-color: #ff0000; 
+}
+#ui-container[data-rank-color='black'] {
+  
+  background-color:#000;
+}
+#ui-container[data-rank-color='red2'] {
+  
+  background-color:#3f0202;
+}
+
+
+.pixel-checkbox {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 4px solid rgb(104, 19, 19);
+  background: white;
+  image-rendering: pixelated; /* Keeps it sharp */
+}
+
+.pixel-checkbox:checked {
+  background: #ff0000; 
+  box-shadow: inset 0 0 0 4px rgb(0, 0, 0); 
+}
+
+
+.task-item.completed span {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.xyz{
+    color: burlywood;
+
+}
