@@ -98,12 +98,12 @@ app.put('/api/tasks/complete/:id', async (req, res) => {
       return res.status(400).json({ error: 'Task already completed' });
     }
 
-    // 2. Mark task as complete
+    //comp
     await db.query('update tasks set is_complete = true where task_id = $1', [
       id,
     ]);
 
-    // 3. Subtract 5 points
+    //minus
     const pointsLost = -5;
     const userRes = await db.query(
       'update "user" set total_points = total_points + $1 where user_id = 1 returning *',
@@ -140,13 +140,13 @@ app.put('/api/tasks/complete/:id', async (req, res) => {
         newRank = 'Keeper of Minor Repeats';
     }
 
-    // 5. Update the rank in the database
+    
     await db.query('UPDATE "user" SET rank_name = $1 WHERE user_id = 1', [
       newRank,
     ]);
-    newUserData.rank_name = newRank; // Add rank to object
+    newUserData.rank_name = newRank; 
 
-    // 6. Return the new user data
+   
     res.json(newUserData);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -185,7 +185,7 @@ app.delete('/api/reset', async (req, res) => {
     //    !! Use your default rank name !!
     const { rows } = await db.query(
       'UPDATE "user" SET total_points = 0, rank_name = $1 WHERE user_id = 1 RETURNING *',
-      ['The Obedient Repeater'] // Or 'Novice' if you didn't change it
+      ['The Obedient Repeater'] 
     );
 
     // 3. Return the newly reset user data
@@ -198,7 +198,7 @@ app.delete('/api/reset', async (req, res) => {
 
 
 
-// Start the server
+
 app.listen(port, () => {
   console.log(`Swarupper backend running at http://localhost:${port}`);
 });

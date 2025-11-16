@@ -14,9 +14,14 @@ const resetButton = document.getElementById('reset-button');
 
 
 
+
+
+
+
 function updateUI(user) {
   rankDisplay.textContent = user.rank_name;
   pointsDisplay.textContent = user.total_points;
+
 
   let color = 'blue';
   if (user.total_points >= 70) color = 'black';
@@ -28,6 +33,7 @@ function updateUI(user) {
  
   uiContainer.setAttribute('data-rank-color', color);
 }
+
 
 
 
@@ -58,7 +64,7 @@ function renderTasks(tasks) {
     `;
     taskList.appendChild(taskItem);
 
-    // Add GSAP "pop-in" animation for new tasks
+    
     gsap.from(taskItem, {
       duration: 0.5,
       scale: 0.5,
@@ -68,7 +74,7 @@ function renderTasks(tasks) {
   });
 }
 
-// 3. Load initial data (user and tasks)
+
 async function loadInitialData() {
   try {
     const [userRes, tasksRes] = await Promise.all([
@@ -85,9 +91,7 @@ async function loadInitialData() {
   }
 }
 
-// --- EVENT LISTENERS ---
 
-// 1. Add a new task
 taskForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const description = taskInput.value;
@@ -105,12 +109,12 @@ taskForm.addEventListener('submit', async (e) => {
 
     updateUI(newUserData);
 
-    // Reload all tasks to show the new one
+    
     const tasksRes = await fetch(`${API_URL}/tasks`);
     const tasks = await tasksRes.json();
     renderTasks(tasks);
 
-    // Reset form
+    // Resett
     taskInput.value = '';
     repeatCheckbox.checked = false;
   } catch (err) {
@@ -118,7 +122,7 @@ taskForm.addEventListener('submit', async (e) => {
   }
 });
 
-// 2. Complete a task
+
 taskList.addEventListener('click', async (e) => {
   if (e.target.classList.contains('complete-btn')) {
     const taskItem = e.target.closest('.task-item');
@@ -130,20 +134,20 @@ taskList.addEventListener('click', async (e) => {
       });
       const newUserData = await res.json();
 
-      // Update the UI with new points
+      //** 
       updateUI(newUserData);
 
-      // "Extreme" animation: Make the button and task disappear
+     
       gsap.to(taskItem, {
         duration: 0.7,
         x: '100%',
         opacity: 0,
         ease: 'power1.in',
         onComplete: () => {
-          // Visually mark as complete without full reload
+          
           taskItem.classList.add('completed');
-          e.target.remove(); // Remove the button
-          gsap.to(taskItem, { x: 0, opacity: 1, duration: 0.5 }); // Slide back in
+          e.target.remove(); 
+          gsap.to(taskItem, { x: 0, opacity: 1, duration: 0.5 }); 
         },
       });
     } catch (err) {
@@ -152,7 +156,7 @@ taskList.addEventListener('click', async (e) => {
   }
 });
 
-// 3. Reset all data
+//reset
 resetButton.addEventListener('click', async () => {
   // Add a confirmation pop-up as a safety measure
   if (!confirm('ARE YOU SURE? This will delete all tasks and reset your points!')) {
@@ -179,7 +183,7 @@ resetButton.addEventListener('click', async () => {
 
 // --- ANIMATIONS (GSAP & Barba) ---
 
-// GSAP "Super Duper Extreme" Intro Animation
+
 function introAnimation() {
   // Use a timeline for sequencing
   const tl = gsap.timeline();
@@ -250,10 +254,12 @@ function pageTransition() {
 function init() {
   loadInitialData();
   introAnimation();
-  // We only have one page, so pageTransition() is for show,
-  // but if you added an "About" page, it would work.
-  // pageTransition(); 
+
 }
 
-// Run everything when the page loads
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', init);
