@@ -21,13 +21,16 @@ app.get('/api/user', async (req, res) => {
 });
 
 
+
+
+
 app.get('/api/tasks', async (req, res) => {
   try {
     
     const { rows } = await db.query(
       'SELECT * FROM tasks ORDER BY is_complete ASC, created_at DESC'
     );
-    res.json(rows);
+    res.json(rows);  
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
